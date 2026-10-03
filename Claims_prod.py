@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %run "/Workspace/optum1/prod/connectors_prod"
 
 # COMMAND ----------
@@ -16,7 +20,9 @@ Claims_df= read_bronze_json("Claims")
 
 # COMMAND ----------
 
-Claims_df = Claims_df.drop("_id")
+claims.count()
+claims.groupby("Claim_or_Rejected").count().show()
+claims.select("Claim_or_Rejected").distinct().show(6)
 
 # COMMAND ----------
 
